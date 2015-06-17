@@ -1,11 +1,11 @@
 class ContentWebView < UIWebView
-  include ContainerContentView
+  include CCAutoLayoutView
 
   def init
     super
 
+    self.margin = [0]
     self.delegate = self
-    self.translatesAutoresizingMaskIntoConstraints = false
     self.loadRequest(
       NSURLRequest.requestWithURL(
         NSURL.URLWithString('http://google.com')
@@ -13,9 +13,5 @@ class ContentWebView < UIWebView
     )
 
     self
-  end
-
-  def constraints
-    layout_constraints(top: true)
   end
 end

@@ -1,19 +1,15 @@
 module Footer
   class FooterContainerView < UIView
-    include ContainerContentView
+    include CCAutoLayoutView
 
     def init
       super
 
+      self.margin = [0]
       self.backgroundColor = UIColor.whiteColor
-      self.translatesAutoresizingMaskIntoConstraints = false
       add_top_border
 
       self
-    end
-
-    def constraints
-      layout_constraints(bottom: true)
     end
 
     def add_top_border
@@ -24,21 +20,12 @@ module Footer
 
       self.addSubview(@border)
 
-      _constraints = []
-
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'V:|[border(1)]',
-        options: 0,
-        metrics: nil,
-        views: { 'border' => @border }
-      )
-
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'H:|[border]|',
-        options: 0,
-        metrics: nil,
-        views: { 'border' => @border }
-      )
+      _constraints = CCLayoutConstraints.new(
+        @border,
+        vertical_align: :top,
+        height: 1,
+        margin: [nil, 0]
+      ).constraints
 
       self.addConstraints(_constraints)
     end

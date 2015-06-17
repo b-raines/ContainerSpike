@@ -1,12 +1,11 @@
 module Footer
   class SignInView < UIView
-    include ContainerContentView
+    include CCAutoLayoutView
 
     def init
       super
 
-      self.translatesAutoresizingMaskIntoConstraints = false
-      self.gutter = 90
+      self.margin = [0]
       add_sign_in_button
 
       self
@@ -30,6 +29,12 @@ module Footer
       NSNotificationCenter.defaultCenter.postNotificationName('SignIn', object: self)
     end
 
+    def layout_constraints
+      CCLayoutConstraints.new(
+        self
+      ).constraints
+    end
+
     protected
 
     attr_reader :sign_in_button
@@ -37,26 +42,13 @@ module Footer
     private
 
     def button_constraints
-      _constraints = []
-      metrics = {
-        'vMargin' => 10,
-      }
-
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'V:|-vMargin-[button(50)]-vMargin-|',
-        options: 0,
-        metrics: metrics,
-        views: { 'button' => sign_in_button }
-      )
-
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'H:|-[button]-|',
-        options: 0,
-        metrics: metrics,
-        views: { 'button' => sign_in_button }
-      )
-
-      _constraints
+      CCLayoutConstraints.new(
+        sign_in_button,
+        margin: [10, nil],
+        height: 50,
+        width: 150,
+        align: :center
+      ).constraints
     end
   end
 end

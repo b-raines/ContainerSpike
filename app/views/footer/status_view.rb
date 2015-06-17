@@ -1,16 +1,21 @@
 module Footer
   class StatusView < UIView
-    include ContainerContentView
+    include CCAutoLayoutView
 
     def init
       super
 
-      self.translatesAutoresizingMaskIntoConstraints = false
-      self.gutter = 60
+      self.margin = [0]
       add_tap_recognizer
       add_fields
 
       self
+    end
+
+    def layout_constraints
+      CCLayoutConstraints.new(
+        self
+      ).constraints
     end
 
     private
@@ -48,55 +53,30 @@ module Footer
 
     def field_constraints
       _constraints = []
-      metrics = {
-        'vMargin' => 20,
-        'hMargin' => 60,
-        'textFieldHeight' => 50,
-        'buttonWidth' => 150
-      }
-      views = {
-        'emailField' => email_field,
-        'passwordField' => password_field,
-        'signUpButton' => sign_up_button
-      }
 
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'V:|-vMargin-[emailField(textFieldHeight)]-vMargin-[passwordField(==emailField)]-vMargin-[signUpButton(==emailField)]-vMargin-|',
-        options: 0,
-        metrics: metrics,
-        views: views
-      )
+      _constraints += CCLayoutConstraints.new(
+        email_field,
+        bottom_view: password_field,
+        margin: [20],
+        height: 50
+      ).constraints
 
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'H:|[emailField]|',
-        options: 0,
-        metrics: metrics,
-        views: views
-      )
+      _constraints += CCLayoutConstraints.new(
+        password_field,
+        top_view: email_field,
+        bottom_view: sign_up_button,
+        margin: [20],
+        height: 50
+      ).constraints
 
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'H:|[passwordField]|',
-        options: 0,
-        metrics: metrics,
-        views: views
-      )
-
-      _constraints += NSLayoutConstraint.constraintsWithVisualFormat(
-        'H:[signUpButton(buttonWidth)]',
-        options: 0,
-        metrics: metrics,
-        views: views
-      )
-
-      _constraints << NSLayoutConstraint.constraintWithItem(
+      _constraints += CCLayoutConstraints.new(
         sign_up_button,
-        attribute: NSLayoutAttributeCenterX,
-        relatedBy: NSLayoutRelationEqual,
-        toItem: self,
-        attribute: NSLayoutAttributeCenterX,
-        multiplier: 1,
-        constant: 0
-      )
+        top_view: password_field,
+        margin: [20, nil],
+        height: 50,
+        width: 150,
+        align: :center
+      ).constraints
 
       _constraints
     end

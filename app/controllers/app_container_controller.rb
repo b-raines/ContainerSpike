@@ -8,6 +8,7 @@ class AppContainerController < UIViewController
 
     self.title = 'ContainerSpike'
     self.view.backgroundColor = UIColor.whiteColor
+    add_constraints
 
     self
   end
@@ -15,21 +16,24 @@ class AppContainerController < UIViewController
   def viewDidLoad
     self.display_content_controller(@web_view_controller = ContentWebViewController.new)
     self.display_content_controller(@footer_controller = Footer::FooterContainerController.new)
-
-    add_constraints
   end
 
   def add_constraints
-    web_view = @web_view_controller.view
+    web_view    = @web_view_controller.view
     footer_view = @footer_controller.view
 
-    constraints = NSLayoutConstraint.constraintsWithVisualFormat(
-      'V:|[webView][footerView]|',
-      options: 0,
-      metrics: nil,
-      views: { 'webView' => web_view, 'footerView' => footer_view }
-    )
+    _constraints = []
 
-    self.view.addConstraints(constraints)
+    _constraints += CCLayoutConstraints.new(
+      web_view,
+      bottom_view: footer_view,
+    ).constraints
+
+    _constraints += CCLayoutConstraints.new(
+      footer_view,
+      top_view: web_view,
+    ).constraints
+
+    self.view.addConstraints(_constraints)
   end
 end

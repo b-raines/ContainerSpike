@@ -14,23 +14,23 @@ module ContainerController
   def cycle_from_view_controller(from_controller, opts = {})
     return if !opts[:to_controller]
 
+    to_controller = opts[:to_controller]
     animated = opts.fetch(:animated, true)
     hide_content_controller(from_controller)
-    display_content_controller(opts[:to_controller])
+    display_content_controller(to_controller)
 
     if animated
       UIView.animateWithDuration(
-        0.5,
-        delay: 0,
-        usingSpringWithDamping: 0.75,
-        initialSpringVelocity: 0.5,
-        options: 0,
+        0.4,
+        delay: 0.05,
+        options: UIViewAnimationOptionCurveEaseInOut,
         animations: ->() {
           self.view.layoutIfNeeded
         },
-        completion: ->(finished) {
-        }
+        completion: ->(finished) {}
       )
+    else
+      self.view.layoutIfNeeded
     end
   end
 end
