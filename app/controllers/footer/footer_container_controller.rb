@@ -1,7 +1,6 @@
 module Footer
   class FooterContainerController < UIViewController
     include ContainerController
-    include ContainerContentController
     include KeyboardAvoiding
 
     def viewWillAppear(animated)
@@ -21,7 +20,7 @@ module Footer
     end
 
     def viewDidLoad
-      self.display_content_controller(sign_in_controller)
+      self.display_content_controller(enroll_controller)
     end
 
     def dealloc
@@ -31,16 +30,16 @@ module Footer
 
     private
 
-    def sign_in
-      cycle_from_view_controller(sign_in_controller, to_controller: status_controller)
+    def start_trial
+      cycle_from_view_controller(enroll_controller, to_controller: status_controller)
     end
 
     def sign_out
-      cycle_from_view_controller(status_controller, to_controller: sign_in_controller)
+      cycle_from_view_controller(status_controller, to_controller: enroll_controller)
     end
 
-    def sign_in_controller
-      @sign_in_controller ||= Footer::SignInController.new
+    def enroll_controller
+      @enroll_controller ||= Footer::EnrollController.new
     end
 
     def status_controller
@@ -48,7 +47,7 @@ module Footer
     end
 
     def register_observations
-      register_observation('sign_in', 'SignIn')
+      register_observation('start_trial', 'StartTrial')
       register_observation('sign_out', 'SignOut')
     end
 

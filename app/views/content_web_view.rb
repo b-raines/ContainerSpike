@@ -4,7 +4,6 @@ class ContentWebView < UIWebView
   def init
     super
 
-    self.margin = [0]
     self.delegate = self
     self.loadRequest(
       NSURLRequest.requestWithURL(

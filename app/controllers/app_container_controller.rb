@@ -26,11 +26,13 @@ class AppContainerController < UIViewController
 
     _constraints += CCLayoutConstraints.new(
       web_view,
+      margin: [0],
       bottom_view: footer_view,
     ).constraints
 
     _constraints += CCLayoutConstraints.new(
       footer_view,
+      margin: [0],
       top_view: web_view,
     ).constraints
 

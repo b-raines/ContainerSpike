@@ -1,6 +1,5 @@
 module Footer
   class StatusController < UIViewController
-    include ContainerContentController
     include CCInputToolbar
 
     def loadView

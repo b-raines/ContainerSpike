@@ -22,7 +22,7 @@ module ContainerController
     if animated
       UIView.animateWithDuration(
         0.4,
-        delay: 0.05,
+        delay: 0,
         options: UIViewAnimationOptionCurveEaseInOut,
         animations: ->() {
           self.view.layoutIfNeeded

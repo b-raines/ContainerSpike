@@ -5,8 +5,8 @@ class CCLayoutConstraints
     @bottom_view        = opts[:bottom_view]
     @left_view          = opts[:left_view]
     @right_view         = opts[:right_view]
-    @width              = opts.fetch(:width, default_view_width)
-    @height             = opts.fetch(:height, default_view_height)
+    @width              = opts[:width]
+    @height             = opts[:height]
     @align              = opts[:align]
     @vertical_align     = opts[:vertical_align]
     @top                = opts[:margin_top]
@@ -14,23 +14,7 @@ class CCLayoutConstraints
     @bottom             = opts[:margin_bottom]
     @left               = opts[:margin_left]
 
-    self.margins = opts.fetch(:margin, default_view_margins)
-  end
-
-  def default_view_margins
-    if view.respond_to?(:margin)
-      view.margin
-    else
-      []
-    end
-  end
-
-  def default_view_width
-    view.width if view.respond_to?(:width)
-  end
-
-  def default_view_width
-    view.width if view.respond_to?(:height)
+    self.margins = opts.fetch(:margin, [])
   end
 
   def constraints
@@ -94,9 +78,9 @@ class CCLayoutConstraints
   def vfl(side)
     case side
     when :horizontal
-      "H:#{margin(:left)}[view#{width_constraint}]#{margin(:right)}"
+      "H:#{margin(:left)}[view#{size(width)}]#{margin(:right)}"
     when :vertical
-      "V:#{margin(:top)}[view#{height_constraint}]#{margin(:bottom)}"
+      "V:#{margin(:top)}[view#{size(height)}]#{margin(:bottom)}"
     end
   end
 
@@ -122,15 +106,9 @@ class CCLayoutConstraints
     end
   end
 
-  def height_constraint
-    if height && height >= 0
-      "(#{height})"
-    end
-  end
-
-  def width_constraint
-    if width && width >= 0
-      "(#{width})"
+  def size(dimension)
+    if dimension && dimension >= 0
+      "(#{dimension})"
     end
   end
 
