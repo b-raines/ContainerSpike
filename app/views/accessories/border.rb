@@ -16,7 +16,7 @@ class Border < UIView
     end
 
     self.height = opts.fetch(:thickness, 1)
-    self.backgroundColor = opts.fetch(:color, UIColor.colorWithRed(0.9, green: 0.9, blue: 0.9, alpha: 1))
+    self.backgroundColor = opts.fetch(:color, CCColor.light_gray)
 
     self
   end

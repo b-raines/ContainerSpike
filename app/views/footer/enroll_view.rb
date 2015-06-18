@@ -5,25 +5,15 @@ module Footer
     def init
       super
 
-      self.height = 70
+      self.height = 60
       self.margin = [0]
       self.addSubview(@enroll_button = CCButton.alloc.init_with_title('Start Free Trial'))
       self.addSubview(@left_bar_button = CCButton.alloc.init_with_image('down_arrow.png'))
-      enroll_button.addGestureRecognizer(tapped_start_trial)
+      TapEvent.new(enroll_button, 'StartTrial').register
+      TapEvent.new(left_bar_button, 'DismissContent').register
       self.addConstraints(subview_constraints)
 
       self
-    end
-
-    def tapped_start_trial
-      UITapGestureRecognizer.alloc.initWithTarget(
-        self,
-        action: 'start_trial'
-      )
-    end
-
-    def start_trial
-      NSNotificationCenter.defaultCenter.postNotificationName('StartTrial', object: self)
     end
 
     protected
@@ -38,16 +28,16 @@ module Footer
       _constraints += CCLayout.new(
         left_bar_button,
         right_view: enroll_button,
-        margin_left: 20,
-        height: 20,
-        width: 40,
+        margin_left: 33,
+        height: 12,
+        width: 24,
         vertical_align: :center
       ).constraints
 
       _constraints += CCLayout.new(
         enroll_button,
         left_view: left_bar_button,
-        height: 50,
+        height: 40,
         width: 150,
         align: :center,
         vertical_align: :center

@@ -5,7 +5,8 @@ module Footer
     def init
       super
 
-      self.backgroundColor = UIColor.colorWithRed(0.988, green:0.988, blue:0.988, alpha:1)
+      self.vertical_align = :bottom
+      self.backgroundColor = CCColor.footer_background
       self.addSubview(Border.new(:top))
 
       self

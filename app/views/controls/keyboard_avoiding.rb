@@ -7,7 +7,7 @@ module KeyboardAvoiding
     self
   end
 
-  def keyboardWillShow(notification)
+  def keyboard_will_show(notification)
     UIView.animateWithDuration(
       keyboard_animation_duration_for_notification(notification),
       animations: ->() {
@@ -17,7 +17,7 @@ module KeyboardAvoiding
     )
   end
 
-  def keyboardWillHide(notification)
+  def keyboard_will_hide(notification)
     UIView.animateWithDuration(
       keyboard_animation_duration_for_notification(notification),
       animations: ->() {
@@ -38,23 +38,12 @@ module KeyboardAvoiding
   end
 
   def register_keyboard_observations
-    NSNotificationCenter.defaultCenter.addObserver(
-      self,
-      selector: 'keyboardWillShow:',
-      name: UIKeyboardWillShowNotification,
-      object: nil
-    )
-
-    NSNotificationCenter.defaultCenter.addObserver(
-      self,
-      selector: 'keyboardWillHide:',
-      name: UIKeyboardWillHideNotification,
-      object: nil
-    )
+    Event.subscribe(self, UIKeyboardWillShowNotification, selector: 'keyboard_will_show:')
+    Event.subscribe(self, UIKeyboardWillHideNotification, selector: 'keyboard_will_hide:')
   end
 
   def dealloc
-    NSNotificationCenter.defaultCenter.removeObserver(self)
+    Event.unsubscribe(self)
 
     super
   end

@@ -6,7 +6,6 @@ module Footer
       super
 
       self.margin = [nil, 0]
-      add_tap_recognizer
       add_fields
 
       self
@@ -25,6 +24,7 @@ module Footer
       self.addSubview(password_field)
       self.addSubview(sign_up_button)
       self.addConstraints(field_constraints)
+      TapEvent.new(sign_up_button, 'SignOut').register
     end
 
     def email_field
@@ -79,19 +79,6 @@ module Footer
       ).constraints
 
       _constraints
-    end
-
-    def add_tap_recognizer
-      tap_recognizer = UITapGestureRecognizer.alloc.initWithTarget(
-        self,
-        action: 'sign_out'
-      )
-
-      sign_up_button.addGestureRecognizer(tap_recognizer)
-    end
-
-    def sign_out
-      NSNotificationCenter.defaultCenter.postNotificationName('SignOut', object: self)
     end
   end
 end

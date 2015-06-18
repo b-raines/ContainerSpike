@@ -6,7 +6,7 @@ class CCButton < UIButton
 
     self.layer.cornerRadius = 4
     self.layer.masksToBounds = true
-    self.backgroundColor = UIColor.colorWithRed(0.353, green:0.859, blue:0.604, alpha:1)
+    self.backgroundColor = CCColor.call_to_action
     self.setTitle(title, forState: UIControlStateNormal)
     self.setTitle(title, forState: UIControlStateDisabled)
     self.setTitleColor(UIColor.whiteColor, forState: UIControlStateNormal)
