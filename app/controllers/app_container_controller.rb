@@ -6,7 +6,6 @@ class AppContainerController < UIViewController
   def init
     super
 
-    self.title = 'ContainerSpike'
     self.view.backgroundColor = UIColor.whiteColor
     add_constraints
 
@@ -24,13 +23,13 @@ class AppContainerController < UIViewController
 
     _constraints = []
 
-    _constraints += CCLayoutConstraints.new(
+    _constraints += CCLayout.new(
       web_view,
       margin: [0],
       bottom_view: footer_view,
     ).constraints
 
-    _constraints += CCLayoutConstraints.new(
+    _constraints += CCLayout.new(
       footer_view,
       margin: [0],
       top_view: web_view,

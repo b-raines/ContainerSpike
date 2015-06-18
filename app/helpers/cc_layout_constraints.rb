@@ -1,4 +1,4 @@
-class CCLayoutConstraints
+class CCLayout
   def initialize(view, opts = {})
     @view               = view
     @top_view           = opts[:top_view]
@@ -14,7 +14,7 @@ class CCLayoutConstraints
     @bottom             = opts[:margin_bottom]
     @left               = opts[:margin_left]
 
-    self.margins = opts.fetch(:margin, [])
+    self.margins = opts[:margin] || []
   end
 
   def constraints
@@ -114,13 +114,15 @@ class CCLayoutConstraints
 
   def margin(side)
     side_margin = self.send(side)
-    if side_margin && side_margin >= 0
+    if side_margin && side_margin > 0
       case side
       when :top, :left
         "#{relative_view(side)}-#{side_margin}-"
       when :right, :bottom
         "-#{side_margin}-#{relative_view(side)}"
       end
+    elsif side_margin == 0
+      relative_view(side)
     end
   end
 

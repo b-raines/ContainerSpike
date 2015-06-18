@@ -2,7 +2,9 @@ module CCAutoLayoutView
   attr_accessor \
     :margin,
     :height,
-    :width
+    :width,
+    :align,
+    :vertical_align
 
   def init
     super
@@ -19,17 +21,19 @@ module CCAutoLayoutView
   end
 
   def implicit_layout_constraints
-    CCLayoutConstraints.new(
+    CCLayout.new(
       self,
       margin: margin,
       height: height,
-      width: width
+      width: width,
+      align: align,
+      vertical_align: vertical_align
     ).constraints
   end
 
   private
 
   def constraints_provided?
-    margin || height || width
+    margin || height || width || align || vertical_align
   end
 end

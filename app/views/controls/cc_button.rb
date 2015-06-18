@@ -14,4 +14,12 @@ class CCButton < UIButton
 
     self
   end
+
+  def init_with_image(image)
+    init
+
+    self.setImage(UIImage.imageNamed(image), forState: UIControlStateNormal)
+
+    self
+  end
 end

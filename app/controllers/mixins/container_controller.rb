@@ -18,6 +18,7 @@ module ContainerController
     animated = opts.fetch(:animated, true)
     hide_content_controller(from_controller)
     display_content_controller(to_controller)
+    root_view = self.view.superview || self.view
 
     if animated
       UIView.animateWithDuration(
@@ -25,7 +26,7 @@ module ContainerController
         delay: 0,
         options: UIViewAnimationOptionCurveEaseInOut,
         animations: ->() {
-          self.view.layoutIfNeeded
+          root_view.layoutIfNeeded
         },
         completion: ->(finished) {}
       )

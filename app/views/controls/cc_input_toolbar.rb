@@ -12,14 +12,14 @@ module CCInputToolbar
     true
   end
 
-  private
-
   def input_fields
     @input_fields ||=
       view.subviews.select do |v|
         v.is_a?(UITextField) || v.is_a?(UITextView)
       end
   end
+
+  private
 
   def assign_input_fields_accessory_view_and_delegate(field_bar)
     input_fields.each do |field|

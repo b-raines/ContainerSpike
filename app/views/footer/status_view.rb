@@ -5,7 +5,7 @@ module Footer
     def init
       super
 
-      self.margin = [0]
+      self.margin = [nil, 0]
       add_tap_recognizer
       add_fields
 
@@ -13,7 +13,7 @@ module Footer
     end
 
     def layout_constraints
-      CCLayoutConstraints.new(
+      CCLayout.new(
         self
       ).constraints
     end
@@ -54,14 +54,14 @@ module Footer
     def field_constraints
       _constraints = []
 
-      _constraints += CCLayoutConstraints.new(
+      _constraints += CCLayout.new(
         email_field,
         bottom_view: password_field,
         margin: [20],
         height: 50
       ).constraints
 
-      _constraints += CCLayoutConstraints.new(
+      _constraints += CCLayout.new(
         password_field,
         top_view: email_field,
         bottom_view: sign_up_button,
@@ -69,7 +69,7 @@ module Footer
         height: 50
       ).constraints
 
-      _constraints += CCLayoutConstraints.new(
+      _constraints += CCLayout.new(
         sign_up_button,
         top_view: password_field,
         margin: [20, nil],

@@ -1,7 +1,6 @@
 module Footer
   class FooterContainerController < UIViewController
     include ContainerController
-    include KeyboardAvoiding
 
     def viewWillAppear(animated)
       super
