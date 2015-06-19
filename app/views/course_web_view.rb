@@ -1,4 +1,4 @@
-class ContentWebView < UIWebView
+class CourseWebView < UIWebView
   include CCAutoLayoutView
 
   def init

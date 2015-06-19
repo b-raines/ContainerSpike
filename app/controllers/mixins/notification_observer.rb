@@ -5,14 +5,16 @@ module NotificationObserver
       register_observations
     end
 
-    def viewWillDisappear(animated)
+    def viewDidDisappear(animated)
       super
-      Event.unsubscribe(self)
+      Event.remove_observer(self)
     end
 
     def dealloc
-      Event.unsubscribe
+      Event.remove_observer(self)
       super
     end
+
+    def register_observations; end
   end
 end

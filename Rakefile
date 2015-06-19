@@ -11,4 +11,5 @@ end
 Motion::Project::App.setup do |app|
   app.name = 'ContainerSpike'
   app.files += Dir.glob('./lib/*')
+  app.info_plist['UIViewControllerBasedStatusBarAppearance'] = true
 end

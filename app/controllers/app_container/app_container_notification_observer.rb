@@ -6,10 +6,6 @@ module AppContainerNotificationObserver
   end
 
   def dismiss_content(notification)
-    if top_view_controller
-      update_controllers(top: nil)
-    else
-      update_controllers(top: ContentWebViewController.new)
-    end
+    ContentNavigationManager.pop
   end
 end
