@@ -6,4 +6,8 @@ class CourseWebViewController < CCWebViewController
   def loadView
     self.view = CourseWebView.new
   end
+
+  def url
+    self.view.url
+  end
 end

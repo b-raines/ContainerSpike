@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# staging
+export BASE_URL='https://staging.changecollective.com'
+
+# production
+# export BASE_URL='https://api.changecollective.com'
+
+bundle exec rake device

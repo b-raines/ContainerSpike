@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export HOCKEYAPP_API_TOKEN='afaf73ef088e4b6381a4da1f58195c68'
+export HOCKEYAPP_APP_IDENTIFIER='a3451376606846e72937b8fe155abc60'
+export notes=`cat RELEASE.mkdn`
+
+bundle exec rake hockeyapp
