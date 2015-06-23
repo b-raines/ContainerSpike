@@ -5,12 +5,13 @@ module Footer
     def init
       super
 
-      self.height = 60
+      self.height = DEFAULT_FOOTER_HEIGHT
       self.margin = [0]
       self.addSubview(@enroll_button = CCButton.alloc.init_with_title('Start Free Trial'))
       self.addSubview(@left_bar_button = CCButton.alloc.init_with_image('down_arrow.png'))
+      left_bar_button.setImageEdgeInsets(UIEdgeInsetsMake(10,10,10,10))
       TapEvent.new(enroll_button, 'StartTrial').register
-      TapEvent.new(left_bar_button, 'DismissContent').register
+      TapEvent.new(left_bar_button, 'WillDismissCourseView').register
       self.addConstraints(subview_constraints)
 
       self
@@ -28,9 +29,7 @@ module Footer
       _constraints += CCLayout.new(
         left_bar_button,
         right_view: enroll_button,
-        margin_left: 33,
-        height: 12,
-        width: 24,
+        margin: [0, nil, 0, 23],
         vertical_align: :center
       ).constraints
 

@@ -1,13 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    MIMInputToolbar (0.0.1)
-    activesupport (4.2.0)
-      i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
-      minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
-      tzinfo (~> 1.1)
+    MIMInputToolbar (0.0.3)
+    activesupport (3.2.22)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
+    builder (3.2.2)
+    cdq (1.0.2)
+      motion-yaml
+      ruby-xcdm (~> 0.0, >= 0.0.8)
     claide (0.8.1)
     cocoapods (0.37.2)
       activesupport (>= 3.2.15)
@@ -33,21 +34,36 @@ GEM
       nap (>= 0.8)
       netrc (= 0.7.8)
     cocoapods-try (0.4.5)
+    coderay (1.1.0)
     colored (1.2)
     escape (0.0.4)
     fuzzy_match (2.0.4)
     i18n (0.7.0)
-    json (1.8.2)
-    minitest (5.5.1)
+    json (1.8.3)
+    method_source (0.8.2)
     molinillo (0.2.3)
-    motion-cocoapods (1.7.0)
+    motion-cocoapods (1.7.1)
       cocoapods (>= 0.34)
+    motion-env (0.0.4)
+    motion-hockeyapp (1.2.2)
+      motion-cocoapods (>= 1.4.1)
+    motion-redgreen (1.0.0)
+    motion-stump (0.3.2)
+    motion-yaml (1.4)
+    multi_json (1.11.1)
     nap (0.8.0)
     netrc (0.7.8)
+    plist (3.1.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rake (10.4.2)
-    thread_safe (0.3.4)
-    tzinfo (1.2.2)
-      thread_safe (~> 0.1)
+    ruby-xcdm (0.0.8)
+      activesupport (~> 3.2)
+      builder (~> 3.2)
+      plist (~> 3.1)
+    slop (3.6.0)
     xcodeproj (0.24.2)
       activesupport (>= 3)
       colored (~> 1.2)
@@ -57,5 +73,12 @@ PLATFORMS
 
 DEPENDENCIES
   MIMInputToolbar
+  cdq
+  json
   motion-cocoapods
+  motion-env
+  motion-hockeyapp (= 1.2.2)
+  motion-redgreen
+  motion-stump
+  pry
   rake

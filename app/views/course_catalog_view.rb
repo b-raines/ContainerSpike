@@ -5,8 +5,8 @@ class CourseCatalogView < UIView
     super
 
     self.margin = [0]
-    self.backgroundColor = UIColor.whiteColor
-    self.addSubview(@button = CCButton.alloc.init_with_title('Course'))
+    self.backgroundColor = CCColor.teal
+    self.addSubview(@button = CCButton.alloc.init_with_image('course_card.png'))
     self.addConstraints(button_constraints)
     TapEvent.new(@button, 'NavigateToCourse').register
 
@@ -16,8 +16,8 @@ class CourseCatalogView < UIView
   def button_constraints
     CCLayout.new(
       @button,
-      width: 150,
-      height: 50,
+      width: 270,
+      height: 358,
       align: :center,
       vertical_align: :center
     ).constraints

@@ -1,15 +1,12 @@
-class CourseWebView < UIWebView
+class CourseWebView < CCWebView
   include CCAutoLayoutView
 
   def init
     super
 
     self.delegate = self
-    self.loadRequest(
-      NSURLRequest.requestWithURL(
-        NSURL.URLWithString('http://google.com')
-      )
-    )
+    self.url = 'http://staging.changecollective.com/mobile/courses/slim-by-design'
+    load_url
 
     self
   end

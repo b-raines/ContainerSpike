@@ -47,7 +47,7 @@ class ContentNavigationManager
   attr_accessor :navigation_controller
 
   def initialize
-    self.navigation_controller = CCContentNavigationController.alloc.init
+    self.navigation_controller = CCNavigationController.alloc.init
     start_current_workflow
   end
 
@@ -82,7 +82,7 @@ class ContentNavigationManager
   private
 
   def start_current_workflow
-    CourseCatalogWorkflow.new(self).start
+    Content::CourseCatalogWorkflow.new(self).start
   end
 
   def controller_for_class(controller_class)

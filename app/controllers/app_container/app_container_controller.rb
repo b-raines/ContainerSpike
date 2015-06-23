@@ -7,7 +7,13 @@ class AppContainerController < UIViewController
     :top_view_controller,
     :bottom_view_controller
 
-  def prefersStatusBarHidden; true; end
+  def childViewControllerForStatusBarStyle
+    top_nav_controller
+  end
+
+  def childViewControllerForStatusBarHidden
+    top_nav_controller
+  end
 
   def init
     super
