@@ -1,11 +1,9 @@
 module Footer
-  class AccountSetupView < UIView
-    include CCAutoLayoutView
-
+  class AccountSetupView < FooterView
     def init
       super
 
-      self.margin = [0]
+      self.height = screen_height
       add_fields
 
       self
@@ -21,7 +19,6 @@ module Footer
       self.addSubview(@email_field = CCEmailField.alloc.init)
       self.addSubview(@password_field = CCPasswordField.alloc.init)
       self.addSubview(@next_button = CCButton.alloc.init_with_title('Next'))
-      self.addConstraints(subview_constraints)
       TapEvent.new(next_button, 'SignInOrSignUp').register
     end
 

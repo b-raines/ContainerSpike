@@ -16,10 +16,7 @@ class CourseCatalogView < UIView
   def button_constraints
     CCLayout.new(
       @button,
-      width: 270,
-      height: 358,
-      align: :center,
-      vertical_align: :center
+      margin: [107.5, 35, 45, 15]
     ).constraints
   end
 end

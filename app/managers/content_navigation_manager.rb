@@ -82,7 +82,7 @@ class ContentNavigationManager
   private
 
   def start_current_workflow
-    Content::CourseCatalogWorkflow.new(self).start
+    Content::CourseWorkflow.new(self).start
   end
 
   def controller_for_class(controller_class)

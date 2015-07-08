@@ -28,26 +28,42 @@ module ContainerController
     return if !opts[:to_controller]
 
     animated = opts.fetch(:animated, true)
-    hide_content_controller(from_controller)
-    display_content_controller(opts[:to_controller])
 
     if animated
-      UIView.animateWithDuration(
-        0.3,
-        delay: 0,
-        options: UIViewAnimationOptionCurveLinear,
-        animations: ->() {
-          root_view.layoutIfNeeded
-        },
-        completion: ->(finished) {}
-      )
+      animate_controller_dismissal(from_controller, opts[:to_controller])
     else
-      root_view.layoutIfNeeded
+      hide_content_controller(from_controller)
+      display_content_controller(opts[:to_controller])
+      self.view.layoutIfNeeded
     end
   end
 
-  def root_view
-    self.view.superview || self.view
+  def animate_controller_dismissal(controller, to_controller = nil)
+    UIView.animateWithDuration(
+      0.2,
+      delay: 0,
+      options: UIViewAnimationOptionCurveLinear,
+      animations: ->() {
+        self.view.frame = [[0, screen_height], [screen_width, 0]]
+      },
+      completion: ->(finished) {
+        hide_content_controller(controller)
+        animate_controller_presentation(to_controller) if to_controller
+      }
+    )
+  end
+
+  def animate_controller_presentation(vc)
+    display_content_controller(vc)
+    UIView.animateWithDuration(
+      0.2,
+      delay: 0,
+      options: UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionOverrideInheritedDuration | UIViewAnimationOptionLayoutSubviews,
+      animations: ->() {
+        self.view.layoutIfNeeded
+      },
+      completion: ->(finished) {}
+    )
   end
 
   def visible_view_controller
@@ -56,5 +72,13 @@ module ContainerController
 
   def root_view_controller
     view_controllers[0]
+  end
+
+  def screen_width
+    UIScreen.mainScreen.bounds.size.width
+  end
+
+  def screen_height
+    UIScreen.mainScreen.bounds.size.height
   end
 end

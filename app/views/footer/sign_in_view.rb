@@ -1,14 +1,9 @@
 module Footer
-  class SignInView < UIView
-    include CCAutoLayoutView
-
+  class SignInView < FooterView
     def init
       super
 
-      self.height = DEFAULT_FOOTER_HEIGHT
-      self.margin = [0]
       self.addSubview(@sign_in_button = CCButton.alloc.init_with_title('Sign In'))
-      self.addConstraints(subview_constraints)
       TapEvent.new(sign_in_button, 'WillNavigateToSignIn').register
 
       self
@@ -21,8 +16,9 @@ module Footer
     private
 
     def subview_constraints
-      CCLayout.new(
+     CCLayout.new(
         sign_in_button,
+        margin: [10, nil],
         height: 40,
         width: 150,
         align: :center,

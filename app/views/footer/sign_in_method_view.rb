@@ -1,7 +1,5 @@
 module Footer
-  class SignInMethodView < UIView
-    include CCAutoLayoutView
-
+  class SignInMethodView < FooterView
     def init_with_fb_delegate(delegate)
       init
 
@@ -13,7 +11,6 @@ module Footer
     def init
       super
 
-      self.margin = [0]
       self.addSubview(@facebook_button = FBSDKLoginButton.alloc.init)
       self.addSubview(@divider_label = DividerLabel.alloc.init)
       self.addSubview(@sign_in_button = CCButton.alloc.init_with_title(
@@ -21,7 +18,6 @@ module Footer
         font: CCFont.proxima_semibold(size: 16.5)
       ))
       self.addSubview(@cancel_button = CancelButton.alloc.init)
-      self.addConstraints(subview_constraints)
 
       facebook_button.readPermissions = ['public_profile', 'email']
       facebook_button.translatesAutoresizingMaskIntoConstraints = false

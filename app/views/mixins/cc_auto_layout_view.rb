@@ -17,6 +17,7 @@ module CCAutoLayoutView
   def didMoveToSuperview
     if constraints_provided? && superview
       superview.addConstraints(implicit_layout_constraints)
+      self.addConstraints(subview_constraints)
     end
   end
 
@@ -35,5 +36,11 @@ module CCAutoLayoutView
 
   def constraints_provided?
     margin || height || width || align || vertical_align
+  end
+
+  ## Override this method in subclass to provide constraints that are added when view is added to a view
+
+  def subview_constraints
+    []
   end
 end
