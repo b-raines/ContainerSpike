@@ -3,14 +3,12 @@ module Footer
     include ContainerController
     include FooterContainerNotificationObserver
 
-    DEFAULT_FOOTER_HEIGHT = 60
-
     def loadView
       self.view = Footer::FooterContainerView.new
     end
 
     def viewDidLoad
-      self.display_content_controller(sign_in_controller)
+      self.display_content_controller(enroll_controller)
     end
 
     def height
@@ -21,10 +19,6 @@ module Footer
 
     def enroll_controller
       @enroll_controller ||= Footer::EnrollController.alloc.init
-    end
-
-    def account_setup_controller
-      @account_setup_controller ||= Footer::AccountSetupController.alloc.init
     end
 
     def sign_in_controller

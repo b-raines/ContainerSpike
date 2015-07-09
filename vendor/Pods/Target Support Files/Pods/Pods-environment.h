@@ -60,3 +60,15 @@
 #define COCOAPODS_VERSION_MINOR_HockeySDK 6
 #define COCOAPODS_VERSION_PATCH_HockeySDK 4
 
+// JVFloatLabeledTextField
+#define COCOAPODS_POD_AVAILABLE_JVFloatLabeledTextField
+#define COCOAPODS_VERSION_MAJOR_JVFloatLabeledTextField 1
+#define COCOAPODS_VERSION_MINOR_JVFloatLabeledTextField 1
+#define COCOAPODS_VERSION_PATCH_JVFloatLabeledTextField 0
+
+// SHSPhoneComponent
+#define COCOAPODS_POD_AVAILABLE_SHSPhoneComponent
+#define COCOAPODS_VERSION_MAJOR_SHSPhoneComponent 2
+#define COCOAPODS_VERSION_MINOR_SHSPhoneComponent 15
+#define COCOAPODS_VERSION_PATCH_SHSPhoneComponent 0
+

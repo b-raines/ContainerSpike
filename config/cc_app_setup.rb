@@ -74,6 +74,8 @@ class CCAppSetup
   def require_cocoapods
     app.pods do
       pod 'Facebook-iOS-SDK'
+      pod 'JVFloatLabeledTextField'
+      pod 'SHSPhoneComponent'
     end
   end
 

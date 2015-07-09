@@ -13,6 +13,7 @@ class CCLayout
     @right              = opts[:margin_right]
     @bottom             = opts[:margin_bottom]
     @left               = opts[:margin_left]
+    @relative_to_margins = opts[:relative_to_margins]
 
     self.margins = opts[:margin] || []
   end
@@ -122,7 +123,16 @@ class CCLayout
         "-#{side_margin}-#{relative_view(side)}"
       end
     elsif side_margin == 0
-      relative_view(side)
+      if relative_to_margins?
+        case side
+        when :top, :left
+          "|-"
+        when :right, :bottom
+          "-|"
+        end
+      else
+        relative_view(side)
+      end
     end
   end
 
@@ -132,6 +142,10 @@ class CCLayout
     else
       '|'
     end
+  end
+
+  def relative_to_margins?
+    @relative_to_margins
   end
 
   def margins=(margin)

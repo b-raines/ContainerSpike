@@ -22,14 +22,20 @@ PODS:
     - Bolts (~> 1.1)
     - Facebook-iOS-SDK/CoreKit
   - HockeySDK (3.6.4)
+  - JVFloatLabeledTextField (1.1.0)
+  - SHSPhoneComponent (2.15)
 
 DEPENDENCIES:
   - Facebook-iOS-SDK
-  - HockeySDK (~> 3.6.1)
+  - HockeySDK (~> 3.6.2)
+  - JVFloatLabeledTextField
+  - SHSPhoneComponent
 
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Facebook-iOS-SDK: f42dfb27283bf5f05e3a9edc88459a75b9892d99
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
 
 COCOAPODS: 0.37.2

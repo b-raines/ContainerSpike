@@ -1,11 +1,8 @@
 module FooterContainerNotificationObserver
   include NotificationObserver::Base
 
-  def register_observations
+  def register_persistent_observations
     Event.subscribe(self, 'StartTrial')
-    Event.subscribe(self, 'SignInOrSignUp')
-    Event.subscribe(self, 'WillNavigateToSignIn')
-    Event.subscribe(self, 'WillNavigateToSignUp')
     Event.subscribe(self, 'WillNavigateToCourseView')
     Event.subscribe(self, 'WillDismissCourseView')
     Event.subscribe(self, 'WillNavigateToPreviousFooterState')
@@ -15,18 +12,6 @@ module FooterContainerNotificationObserver
 
   def start_trial(notification)
     navigate_to(sign_in_method_controller)
-  end
-
-  def sign_in_or_sign_up(notification)
-    go_back
-  end
-
-  def will_navigate_to_sign_in(notification)
-    navigate_to(sign_in_method_controller)
-  end
-
-  def will_navigate_to_sign_up(notification)
-    navigate_to(account_setup_controller)
   end
 
   def will_navigate_to_course_view(notification)

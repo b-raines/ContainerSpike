@@ -14,15 +14,5 @@ module Footer
 
       self
     end
-
-    private
-
-    def screen_width
-      UIScreen.mainScreen.bounds.size.width
-    end
-
-    def screen_height
-      UIScreen.mainScreen.bounds.size.height
-    end
   end
 end

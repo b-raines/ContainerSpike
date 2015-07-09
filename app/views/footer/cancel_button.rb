@@ -10,7 +10,7 @@ module Footer
         font: CCFont.proxima_regular(size: 16.5),
         color: CCColor.gray
       ))
-      self.addSubview(@down_arrow = UIImageView.alloc.initWithImage(UIImage.imageNamed('gray_down_arrow.png')))
+      self.addSubview(@down_arrow = UIImageView.alloc.initWithImage(UIImage.imageNamed('down_arrow_gray.png')))
       down_arrow.translatesAutoresizingMaskIntoConstraints = false
       down_arrow.contentMode = UIViewContentModeScaleAspectFit
       self.addConstraints(subview_constraints)

@@ -29,6 +29,8 @@ class CourseCatalogController < UIViewController
   end
 
   def register_observations
+    super
+
     Event.subscribe(self, 'WillNavigateToCourseView')
   end
 end

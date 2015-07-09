@@ -22,8 +22,7 @@ module Footer
       facebook_button.readPermissions = ['public_profile', 'email']
       facebook_button.translatesAutoresizingMaskIntoConstraints = false
 
-      TapEvent.new(sign_in_button, 'WillNavigateToSignIn').register
-      TapEvent.new(sign_in_button, 'WillNavigateToSignUp').register
+      TapEvent.new(sign_in_button, 'WillShowSignIn').register
       TapEvent.new(cancel_button, 'WillNavigateToPreviousFooterState').register
 
       self

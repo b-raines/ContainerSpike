@@ -1,14 +1,6 @@
 class CCNavigationController < UINavigationController
   # Defer orientation and status bar color to top-most controller
 
-  def init
-    super
-
-    self.view.translatesAutoresizingMaskIntoConstraints = false
-
-    self
-  end
-
   def shouldAutorotate
     topViewController.shouldAutorotate
   end
@@ -33,7 +25,7 @@ class CCNavigationController < UINavigationController
     topViewController
   end
 
-  def pushFadeViewController(view_controller)
+  def fade_push_view_controller(view_controller)
     transition = CATransition.animation
     transition.duration = 0.4
     transition.timingFunction = CAMediaTimingFunction.functionWithName(KCAMediaTimingFunctionEaseInEaseOut)
@@ -44,7 +36,7 @@ class CCNavigationController < UINavigationController
     self.pushViewController(view_controller, animated: false)
   end
 
-  def fadePopViewController
+  def fade_pop_view_controller
     transition = CATransition.animation
     transition.duration = 0.4
     transition.timingFunction = CAMediaTimingFunction.functionWithName(KCAMediaTimingFunctionEaseInEaseOut)

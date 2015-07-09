@@ -5,7 +5,7 @@ class CCEmailField < CCTextField
     self.keyboardType = UIKeyboardTypeEmailAddress
     self.autocorrectionType = UITextAutocorrectionTypeNo
     self.autocapitalizationType = UITextAutocapitalizationTypeNone
-    self.placeholder = 'Email'
+    self.placeholder = 'email'
 
     self
   end

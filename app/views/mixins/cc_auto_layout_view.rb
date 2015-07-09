@@ -32,6 +32,14 @@ module CCAutoLayoutView
     ).constraints
   end
 
+  def screen_width
+    UIScreen.mainScreen.bounds.size.width
+  end
+
+  def screen_height
+    UIScreen.mainScreen.bounds.size.height
+  end
+
   private
 
   def constraints_provided?

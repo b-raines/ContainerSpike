@@ -8,11 +8,11 @@ class AppContainerController < UIViewController
     :bottom_view_controller
 
   def childViewControllerForStatusBarStyle
-    top_nav_controller
+    content_controller
   end
 
   def childViewControllerForStatusBarHidden
-    top_nav_controller
+    content_controller
   end
 
   def init
@@ -24,19 +24,19 @@ class AppContainerController < UIViewController
   end
 
   def viewDidLoad
-    self.display_content_controller(top_nav_controller)
+    self.display_content_controller(content_controller)
     self.display_content_controller(footer_controller)
     updateConstraints
   end
 
   def updateConstraints
-    top_view    = top_nav_controller.view
+    content_view = content_controller.view
     footer_view = footer_controller.view
 
     _constraints = []
 
     _constraints += CCLayout.new(
-      top_view,
+      content_view,
       margin: [0, 0, footer_height, 0]
     ).constraints
 
@@ -54,8 +54,8 @@ class AppContainerController < UIViewController
     Footer::FooterView::DEFAULT_FOOTER_HEIGHT
   end
 
-  def top_nav_controller
-    @top_nav_controller ||= ContentNavigationManager.navigation_controller
+  def content_controller
+    @content_controller ||= CourseWebViewController.new
   end
 
   def footer_controller
