@@ -34,12 +34,6 @@ class AccountSetupController < UIViewController
 
   protected
 
-  def sign_in_user
-    puts '******'
-    puts 'SIGN IN'
-    puts '******'
-  end
-
   def text_did_change(notification)
     if form_is_valid?
       content_view.next_button.enable
@@ -49,22 +43,31 @@ class AccountSetupController < UIViewController
   end
 
   def textFieldShouldReturn(text_field)
-    text_field.resignFirstResponder
-    sign_in_user if form_is_valid?
-    true
+    if form_is_valid?
+      text_field.resignFirstResponder
+      sign_in_user
+
+      true
+    end
   end
 
   private
 
-  def form_is_valid?
-    content_view.email_field.text.length > 0 &&
-      content_view.password_field.text.length > 0 &&
-      content_view.email_field.text["@"] &&
-      content_view.email_field.text["."]
+  def sign_in_or_sign_up(notification)
+    sign_in_user
   end
 
-  def sign_in_or_sign_up(notification)
-    self.navigationController.pushViewController(coach_intro_controller, animated: true)
+  def sign_in_user
+    SessionManager.sign_in(email: content_view.email, password: content_view.password) do |error|
+      dismissViewControllerAnimated(true, completion: nil) if !error
+    end
+  end
+
+  def form_is_valid?
+    content_view.email.length > 0 &&
+      content_view.password.length > 0 &&
+      content_view.email["@"] &&
+      content_view.email["."]
   end
 
   def dismiss_sign_in(notification)

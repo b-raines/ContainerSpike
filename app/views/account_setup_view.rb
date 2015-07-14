@@ -15,6 +15,14 @@ class AccountSetupView < UIView
     self
   end
 
+  def email
+    email_field.text
+  end
+
+  def password
+    password_field.text
+  end
+
   protected
 
   attr_reader :label, :back_button, :email_field, :password_field, :next_button

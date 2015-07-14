@@ -28,7 +28,7 @@ class CCAppSetup
     app.version = '2.0'
     app.device_family = :iphone
     app.deployment_target = '7.1'
-    app.sdk_version = '8.2'
+    app.sdk_version = '8.4'
     app.redgreen_style = :progress
     configure_hockeyapp if app.hockeyapp?
   end
@@ -76,6 +76,8 @@ class CCAppSetup
       pod 'Facebook-iOS-SDK'
       pod 'JVFloatLabeledTextField'
       pod 'SHSPhoneComponent'
+      pod 'AFNetworking'
+      pod 'FXKeychain'
     end
   end
 
