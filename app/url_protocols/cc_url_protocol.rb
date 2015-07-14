@@ -2,13 +2,7 @@ class CCUrlProtocol < NSURLProtocol
   attr_accessor :connection
 
   def self.canInitWithRequest(request)
-    if change_collective_url?(request.URL.absoluteString) && !url_handled?(request)
-      puts "******\n"
-      puts request.URL.absoluteString
-      puts "\n"
-
-      return true
-    end
+    change_collective_url?(request.URL.absoluteString) && !url_handled?(request)
   end
 
   def self.canonicalRequestForRequest(request)
@@ -21,9 +15,6 @@ class CCUrlProtocol < NSURLProtocol
     if SessionManager.auth_token
       new_request.setValue(SessionManager.auth_token, forHTTPHeaderField: 'Authorization')
     end
-
-    puts new_request.valueForHTTPHeaderField('Authorization')
-    puts new_request.HTTPBody
 
     self.connection = NSURLConnection.connectionWithRequest(new_request, delegate: self)
   end

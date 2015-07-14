@@ -20,6 +20,14 @@ class CCColor
       color_with_hex('#5ADB9A')
     end
 
+    def hud_success
+      color_with_hex('#5ADB9A')
+    end
+
+    def hud_failure
+      color_with_hex('#E43F42')
+    end
+
     def footer_background
       color_with_hex('#FCFCFC')
     end

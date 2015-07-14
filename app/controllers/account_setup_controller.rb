@@ -58,8 +58,14 @@ class AccountSetupController < UIViewController
   end
 
   def sign_in_user
+    CCHUD.show
     SessionManager.sign_in(email: content_view.email, password: content_view.password) do |error|
-      dismissViewControllerAnimated(true, completion: nil) if !error
+      if !error
+        dismissViewControllerAnimated(true, completion: nil)
+        CCHUD.showSuccessWithStatus('Signed in!')
+      else
+        CCHUD.showErrorWithStatus('There was an error')
+      end
     end
   end
 

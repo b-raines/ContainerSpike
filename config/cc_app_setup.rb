@@ -78,6 +78,7 @@ class CCAppSetup
       pod 'SHSPhoneComponent'
       pod 'AFNetworking'
       pod 'FXKeychain'
+      pod 'SVProgressHUD'
     end
   end
 
