@@ -3,10 +3,6 @@ class AppContainerController < UIViewController
   include ContainerController
   include AppContainerNotificationObserver
 
-  attr_reader \
-    :top_view_controller,
-    :bottom_view_controller
-
   def childViewControllerForStatusBarStyle
     content_controller
   end
@@ -26,36 +22,20 @@ class AppContainerController < UIViewController
   def viewDidLoad
     self.display_content_controller(content_controller)
     self.display_content_controller(footer_controller)
-    updateConstraints
+    self.view.addConstraints(footer_constraints)
   end
 
-  def updateConstraints
-    content_view = content_controller.view
-    footer_view = footer_controller.view
-
-    _constraints = []
-
-    _constraints += CCLayout.new(
-      content_view,
-      margin: [0, 0, footer_height, 0]
-    ).constraints
-
-    _constraints += CCLayout.new(
-      footer_view,
+  def footer_constraints
+    CCLayout.new(
+      footer_controller.view,
       margin: [nil, 0, 0, 0]
     ).constraints
-
-    self.view.addConstraints(_constraints)
   end
 
   private
 
-  def footer_height
-    Footer::FooterView::DEFAULT_FOOTER_HEIGHT
-  end
-
   def content_controller
-    @content_controller ||= CourseWebViewController.new
+    @content_controller ||= ContentNavigationManager.navigation_controller
   end
 
   def footer_controller

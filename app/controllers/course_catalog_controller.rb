@@ -21,7 +21,7 @@ class CourseCatalogController < UIViewController
   end
 
   def web_view_controller
-    @web_view_controller ||= CourseWebViewController.alloc.init_with_delegate(self)
+    @web_view_controller ||= CCWebViewController.alloc.init_with_delegate(self)
   end
 
   def will_navigate_to_course_view(notification)

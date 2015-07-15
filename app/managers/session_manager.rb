@@ -33,6 +33,7 @@ class SessionManager < AFHTTPSessionManager
       parameters: params,
       success: ->(task, response) {
         store_auth_token(response)
+        Event.trigger('UserSignedIn')
         block.call(nil) if block
       },
       failure: ->(task, error) {
@@ -44,6 +45,7 @@ class SessionManager < AFHTTPSessionManager
 
   def sign_out
     reset_auth_token
+    Event.trigger('UserSignedOut')
   end
 
   def auth_token

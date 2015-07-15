@@ -52,7 +52,7 @@ class ContentNavigationManager
   end
 
   def navigate_to(vc, opts = {})
-    navigation_controller.slide_up_view_controller(vc)
+    navigation_controller.pushViewController(vc, animated: opts.fetch(:animated, true))
   end
 
   def go_back_to(controller_class, opts = {})
@@ -60,7 +60,7 @@ class ContentNavigationManager
   end
 
   def pop
-    navigation_controller.slide_down_view_controller
+    navigation_controller.popViewControllerAnimated(true)
   end
 
   def pop_to_root(animated)

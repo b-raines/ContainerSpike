@@ -8,7 +8,7 @@ module Footer
     end
 
     def viewDidLoad
-      self.display_content_controller(enroll_controller)
+      self.display_content_controller(course_controller)
     end
 
     def height
@@ -17,16 +17,20 @@ module Footer
 
     private
 
-    def enroll_controller
-      @enroll_controller ||= Footer::EnrollController.alloc.init
+    def course_controller
+      @course_controller ||= Footer::CourseController.alloc.init
     end
 
-    def sign_in_controller
-      @sign_in_controller ||= Footer::SignInController.alloc.init
+    def catalog_controller
+      @catalog_controller ||= Footer::SignInController.alloc.init
     end
 
     def sign_in_method_controller
       @sign_in_method_controller ||= Footer::SignInMethodController.alloc.init
+    end
+
+    def article_controller
+      @article_controller ||= Footer::ArticleController.alloc.init
     end
   end
 end

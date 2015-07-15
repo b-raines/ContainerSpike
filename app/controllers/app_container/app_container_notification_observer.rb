@@ -12,8 +12,8 @@ module AppContainerNotificationObserver
   end
 
   def will_show_sign_in(notification)
-    account_setup_controller = AccountSetupController.alloc.init
-    vc = CCNavigationController.alloc.initWithRootViewController(account_setup_controller)
+    sign_in_controller = SignInController.alloc.init
+    vc = CCNavigationController.alloc.initWithRootViewController(sign_in_controller)
     presentViewController(vc, animated: true, completion: nil)
   end
 
